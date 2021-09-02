@@ -1,10 +1,12 @@
-from base.models import Restaurant
+from base.models import *
 
-from django.views.generic.list import ListView
 from django.shortcuts import render
 
 def city_list(request):
-    return render(request, 'base/city_list.html')
+    cities = City.objects.all()
+    context = {'cities': cities}
+
+    return render(request, 'base/city_list.html', context)
 
 def city_detail(request, pk):
     restaurants = Restaurant.objects.all().filter(city_id=pk)
