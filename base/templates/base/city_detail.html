@@ -1,0 +1,8 @@
+<h1>{{restaurants}}</h1>
+
+{% for restaurant in restaurants %}
+    {{restaurant.city.pk}}
+    <br>
+{% empty %}
+    <h3>No items in list</h3>
+{% endfor %}
