@@ -10,6 +10,9 @@ def city_list(request):
 
 def city_detail(request, pk):
     restaurants = Restaurant.objects.all().filter(city_id=pk)
-    context = {'pk': pk, 'restaurants': restaurants}
+    restaurantfoods = RestaurantFood.objects.all().filter(restaurant_id__in=restaurants)
+    #foods = Food.objects.all().filter(food_id__in=restaurantfoods) # not working
+
+    context = {'pk': pk, 'restaurants': restaurants, 'restaurantfoods': restaurantfoods}
     
     return render(request, 'base/city_detail.html', context)

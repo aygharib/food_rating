@@ -32,4 +32,5 @@ class RestaurantFood(models.Model):
     score = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.score
+        result = self.restaurant.name + "," + self.food.name + "," + self.score
+        return result

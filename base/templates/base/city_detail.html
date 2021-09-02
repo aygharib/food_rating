@@ -1,7 +1,21 @@
-<h1>{{pk}}</h1>
+<!-- <h1>{{pk}}</h1>
 
-{% for restaurant in restaurants %}
+<h1>{{restaurants}}</h1>
+
+<h1>{{restaurantfoods}}</h1> -->
+
+
+{% for restaurantfood in restaurantfoods %}
+    <h1>Restaurant: {{restaurantfood.restaurant.name}}</h1>
+    <br>
+    <h1>Food: {{restaurantfood.food}}</h1>
+    <br>
+    <h1>Score: {{restaurantfood.score}}</h1>
+{% endfor %}
+
+
+<!-- {% for restaurant in restaurants %}
     <h1>{{restaurant.name}}</h1>
 {% empty %}
     <h3>No items in list</h3>
-{% endfor %}
+{% endfor %} -->
