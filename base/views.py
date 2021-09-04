@@ -9,11 +9,20 @@ def city_list(request):
     return render(request, 'base/city_list.html', context)
 
 def city_detail(request, pk):
-    city = City.objects.all().only('name').get(id=pk).name
-    restaurants = Restaurant.objects.all().filter(city_id=pk)
-    restaurantfoods = RestaurantFood.objects.all().filter(restaurant_id__in=restaurants)
-    #foods = Food.objects.all().filter(food_id__in=restaurantfoods) # not working
+    # city = City.objects.get(id=pk).name #get city
+    # restaurants = Restaurant.objects.filter(city_id=pk) #restaurants in city
+    # restaurantfoods = RestaurantFood.objects.filter(restaurant_id__in=restaurants) #restaurantfoods in city
 
-    context = {'pk': pk, 'city': city, 'restaurants': restaurants, 'restaurantfoods': restaurantfoods}
+    # restaurant_ids = Restaurant.objects.filter(city_id=pk).values('id') # city_id -> restaurant_id
+    # food_ids = RestaurantFood.objects.filter(restaurant_id__in=restaurant_ids).values('food_id') # restaurant_id -> food_id
+    # foods = Food.objects.filter(id__in=food_ids)
+
+    # restaurants, restaurantfoods, foods
+    restaurants = Restaurant.objects.filter(city_id=pk)
+    restaurantfoods = RestaurantFood.objects.all()
+    foods = Food.objects.all()
+
+    # context = {'pk': pk, 'city': city, 'restaurants': restaurants, 'restaurantfoods': restaurantfoods, 'food_ids': food_ids}
+    context = {'pk': pk, 'restaurants': restaurants, 'restaurantfoods': restaurantfoods, 'foods': foods}
     
     return render(request, 'base/city_detail.html', context)

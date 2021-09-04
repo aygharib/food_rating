@@ -1,0 +1,11 @@
+at the top of city_detail
+
+{
+    1: 'mcdonalds': {
+        1: 'fries',
+        2: 'burger'
+    },
+    2: 'osmows': {
+        3: 'shawarma
+    }
+}

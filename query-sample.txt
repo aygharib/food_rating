@@ -1,0 +1,5 @@
+SELECT id FROM base_restaurant WHERE city_id=3; // city_id -> restaurant_id
+
+SELECT food_id FROM base_restaurantfood WHERE restaurant_id==5; // restaurant_id -> food_id
+
+SELECT name FROM base_food WHERE id==2; // food_id -> food_name
