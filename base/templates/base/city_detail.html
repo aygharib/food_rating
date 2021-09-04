@@ -1,7 +1,26 @@
+{{restaurantfoods}}
+
+{% for city in city %}
+    <h1>{{city.name}}</h1>
+{% endfor %}
 
 {% for restaurant in restaurants %}
+    {% for restaurantfood in restaurantfoods %}
+        {% if restaurantfood.restaurant_id == restaurant.id %}
+            {% for food in foods %}
+                {% if food.id == restaurantfood.food_id %}
+                    <a href="">{{food.name}}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    
+    <hr>
+{% endfor %}
+
+<!-- {% for restaurant in restaurants %}
     <p>Restaurant id:{{restaurant.id}}</p>
-    <p>Rstaurant name: {{restaurant.name}}</p>
+    <p>Restaurant name: {{restaurant.name}}</p>
 
     {% for restaurantfood in restaurantfoods %}
         {% if restaurantfood.restaurant_id == restaurant.id %}
@@ -16,35 +35,4 @@
     {% endfor %}
     
     <hr>
-{% endfor %}
-
-
-<!-- <h1>{{pk}}</h1> -->
-
-<!-- <h1>{{restaurants}}</h1> -->
-
-<!-- <h1>{{restaurantfoods}}</h1> -->
-
-<!-- {{restaurants}}
-<br>
-<p>pog</p>
-{{foods}}
-<p>pog2</p> -->
-<!-- 
-<h1>City: {{city}}</h1>
-<hr>
-
-{% for restaurantfood in restaurantfoods %}
-    <h1>Restaurant: {{restaurantfood.restaurant.name}}</h1>
-    <h1>Food: {{restaurantfood.food}}</h1>
-    <h1>Score: {{restaurantfood.score}}</h1>
-    <hr>
-{% endfor %} -->
-
-<!-- {{list_of_foods}} -->
-
-<!-- {% for restaurant in restaurants %}
-    <h1>{{restaurant.name}}</h1>
-{% empty %}
-    <h3>No items in list</h3>
 {% endfor %} -->
