@@ -1,38 +1,11 @@
-{{restaurantfoods}}
+{{city.name}}<br>
+{{restaurants_list}}<br> 
+{{restaurantfoods_list}}<br>
+{{foods_list}}<br>
 
-{% for city in city %}
-    <h1>{{city.name}}</h1>
-{% endfor %}
+<hr>
+<hr>
+<hr>
+<hr>
 
-{% for restaurant in restaurants %}
-    {% for restaurantfood in restaurantfoods %}
-        {% if restaurantfood.restaurant_id == restaurant.id %}
-            {% for food in foods %}
-                {% if food.id == restaurantfood.food_id %}
-                    <a href="">{{food.name}}</p>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-    
-    <hr>
-{% endfor %}
-
-<!-- {% for restaurant in restaurants %}
-    <p>Restaurant id:{{restaurant.id}}</p>
-    <p>Restaurant name: {{restaurant.name}}</p>
-
-    {% for restaurantfood in restaurantfoods %}
-        {% if restaurantfood.restaurant_id == restaurant.id %}
-            <p>Food id:{{restaurantfood.food_id}}</p>
-
-            {% for food in foods %}
-                {% if food.id == restaurantfood.food_id %}
-                    <p>Food name: {{food.name}}</p>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-    
-    <hr>
-{% endfor %} -->
+{{restaurants_list}}
