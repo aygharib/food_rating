@@ -35,6 +35,6 @@ class RestaurantFood(models.Model):
         result = self.restaurant.name + "," + self.food.name + "," + self.score
         return result
 
-    def cool(self):
+    def info(self):
         result = self.restaurant.name + ": " + self.score
         return result

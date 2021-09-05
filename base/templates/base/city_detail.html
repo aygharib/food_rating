@@ -1,10 +1,5 @@
 <h1>{{city.name}}</h1>
-{{restaurants_list}}<br> 
-{{restaurantfoods_list}}<br>
-{{foods_list}}<br>
-
 <hr>
-
 {% for food in foods_list %}
     <a href="{% url 'food_detail' city.id food.id %}">{{food.name}}</a>
 {% endfor %}
