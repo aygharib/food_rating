@@ -7,3 +7,7 @@
 <hr>
 <hr>
 <hr>
+
+{% for food in foods_list %}
+    <a href="{% url 'food_detail' city.id food.id %}">{{food.name}} {{food.id}}</a>
+{% endfor %}

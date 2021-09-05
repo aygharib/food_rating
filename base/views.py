@@ -1,7 +1,6 @@
 from base.models import *
 from django.shortcuts import render
-from django.db.models.functions import Cast
-from django.db.models import IntegerField
+from django.http import HttpResponse
 
 def city_list(request):
     cities = City.objects.raw('SELECT * FROM base_city ORDER BY name')
@@ -27,3 +26,7 @@ def city_detail(request, pk):
     context = {'pk': pk, 'city':city, 'restaurants_list':restaurants_list, 'restaurantfoods_list':restaurantfoods_list, 'foods_list':foods_list}
     
     return render(request, 'base/city_detail.html', context)
+
+def food_detail(request, city_id, food_id):
+    
+    return HttpResponse("HELLO COOL" +str(city_id) + str(food_id))
