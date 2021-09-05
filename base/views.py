@@ -28,5 +28,8 @@ def city_detail(request, pk):
     return render(request, 'base/city_detail.html', context)
 
 def food_detail(request, city_id, food_id):
+    food = Food.objects.raw("SELECT * FROM base_food WHERE id ==" + str(food_id))[0]
+
+    context = {'food': food}
     
-    return HttpResponse("HELLO COOL" +str(city_id) + str(food_id))
+    return render(request, 'base/food_detail.html', context)
