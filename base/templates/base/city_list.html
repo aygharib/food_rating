@@ -1,7 +1,14 @@
 {% extends 'base/main.html' %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+    <p>Welcome, {{request.user}}.</p>
+    <a href="">Logout</a>
+{% else %}
+    <a href="">Login</a>
+{% endif %}
 
+<hr>
 <h1>City List</h1>
 <hr>
 {% for city in cities %}

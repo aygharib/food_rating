@@ -1,6 +1,26 @@
 from base.models import *
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+
+def login_page(request):
+    # template_name = 'base/login.html'
+    # fields = '__all__'
+    # redirect_authenticated_user = True
+
+    # def get_success_url(self):
+    #     return reverse_lazy('city-list')
+
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('city-list')
+
+    return render(request, 'base/login.html')
 
 def city_list(request):
     cities = City.objects.raw('SELECT * FROM base_city ORDER BY name')
