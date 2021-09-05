@@ -1,3 +1,6 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
 <h1>{{food.name}}</h1>
 <hr>
 {% for restaurantfood in restaurantfoods_list %}
@@ -7,3 +10,4 @@
     <h4>{{restaurantfood.restaurant.number}}</h4>
     <hr>
 {% endfor %}
+{% endblock content %}

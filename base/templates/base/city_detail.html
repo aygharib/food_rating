@@ -1,5 +1,9 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
 <h1>{{city.name}}</h1>
 <hr>
 {% for food in foods_list %}
     <a href="{% url 'food_detail' city.id food.id %}">{{food.name}}</a>
 {% endfor %}
+{% endblock content %}

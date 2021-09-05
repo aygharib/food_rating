@@ -1,3 +1,6 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
 <h1>City List</h1>
 <hr>
 {% for city in cities %}
@@ -6,3 +9,4 @@
 {% empty %}
     <h3>No items in list</h3>
 {% endfor %}
+{% endblock content %}
