@@ -3,3 +3,12 @@ SELECT id FROM base_restaurant WHERE city_id=3; // city_id -> restaurant_id
 SELECT food_id FROM base_restaurantfood WHERE restaurant_id==5; // restaurant_id -> food_id
 
 SELECT name FROM base_food WHERE id==2; // food_id -> food_name
+
+
+## GETTING RESTAURANTS FOR EACH FOOD IN EACH CITY
+
+STEP 1:
+SELECT * FROM (SELECT * FROM base_restaurantfood WHERE restaurant_id IN (SELECT id FROM base_restaurant WHERE city_id==3)) WHERE food_id==1;
+
+FINAL STEP:
+SELECT * FROM base_restaurant WHERE id IN (SELECT restaurant_id FROM (SELECT * FROM base_restaurantfood WHERE restaurant_id IN (SELECT id FROM base_restaurant WHERE city_id==3)) WHERE food_id==1);
