@@ -1,3 +1,12 @@
 <h1>{{food.name}}</h1>
 
-<p>{{restaurants_list}}</p>
+{% for restaurantfood in restaurantfoods_list %}
+    <h3>{{restaurantfood.restaurant.name}} {{restaurantfood.score}}</h3>
+{% endfor %}
+
+<!-- {% for restaurant in restaurants_list %}
+    <h3>{{restaurant.name}}</h3>
+    <h4>{{restaurant.address}}</h4>
+    <h4>{{restaurant.postalcode}}</h4>
+    <h4>{{restaurant.number}}</h4>
+{% endfor %} -->

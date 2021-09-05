@@ -30,10 +30,15 @@ def city_detail(request, pk):
 def food_detail(request, city_id, food_id):
     food = Food.objects.raw("SELECT * FROM base_food WHERE id ==" + str(food_id))[0]
 
+    # This is theoretically useless, since we have restaurantfoods_list
     restaurants_list = []
     for a in Restaurant.objects.raw('SELECT * FROM base_restaurant WHERE id IN (SELECT restaurant_id FROM (SELECT * FROM base_restaurantfood WHERE restaurant_id IN (SELECT id FROM base_restaurant WHERE city_id==' + str(city_id) + ')) WHERE food_id==' + str(food_id) + ')'):
         restaurants_list.append(a)
 
-    context = {'food': food, 'restaurants_list': restaurants_list}
+    restaurantfoods_list = []
+    for a in RestaurantFood.objects.raw('SELECT * FROM (SELECT * FROM base_restaurantfood WHERE restaurant_id IN (SELECT id FROM base_restaurant WHERE city_id==' + str(city_id) + ')) WHERE food_id==' + str(food_id)):
+        restaurantfoods_list.append(a)
+
+    context = {'food': food, 'restaurants_list': restaurants_list, 'restaurantfoods_list': restaurantfoods_list}
     
     return render(request, 'base/food_detail.html', context)
