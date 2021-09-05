@@ -1,9 +1,9 @@
 from base.models import *
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-def login_page(request):
+def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -16,7 +16,11 @@ def login_page(request):
 
     return render(request, 'base/login.html')
 
-@login_required(login_url='login')
+def logout_user(request):
+    logout(request)
+
+    return redirect('city-list')
+
 def city_list(request):
     cities = City.objects.raw('SELECT * FROM base_city ORDER BY name')
     context = {'cities': cities}
