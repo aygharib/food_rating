@@ -1,15 +1,9 @@
 from base.models import *
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 def login_page(request):
-    # template_name = 'base/login.html'
-    # fields = '__all__'
-    # redirect_authenticated_user = True
-
-    # def get_success_url(self):
-    #     return reverse_lazy('city-list')
-
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -22,12 +16,14 @@ def login_page(request):
 
     return render(request, 'base/login.html')
 
+@login_required(login_url='login')
 def city_list(request):
     cities = City.objects.raw('SELECT * FROM base_city ORDER BY name')
     context = {'cities': cities}
 
     return render(request, 'base/city_list.html', context)
 
+@login_required(login_url='login')
 def city_detail(request, pk):
     city = City.objects.raw('SELECT * FROM base_city WHERE id==' + str(pk))[0]
 
@@ -47,6 +43,7 @@ def city_detail(request, pk):
     
     return render(request, 'base/city_detail.html', context)
 
+@login_required(login_url='login')
 def food_detail(request, city_id, food_id):
     food = Food.objects.raw("SELECT * FROM base_food WHERE id ==" + str(food_id))[0]
 
