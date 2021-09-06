@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+from base.forms import CustomUserCreationForm
+
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -20,6 +22,26 @@ def logout_user(request):
     logout(request)
 
     return redirect('city-list')
+
+def register_user(request):
+    form = CustomUserCreationForm()
+    
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.save()
+
+            user = authenticate(request, username=user.username, password=request.POST['password1'])
+
+            if user is not None:
+                login(request, user)
+
+                return redirect('city-list')
+
+    context = {'form': form}
+    return render(request, 'base/register.html', context)
 
 def city_list(request):
     cities = City.objects.raw('SELECT * FROM base_city ORDER BY name')
